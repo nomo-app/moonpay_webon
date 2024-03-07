@@ -11,23 +11,28 @@ export default function App() {
         }).join("\n"))
     });
 
+
+    console.log("wallets", wallets);
+
     const apiKey = import.meta.env.VITE_API_KEY;
     return (
         <MoonPayProvider
             apiKey={apiKey}
         >
             {wallets.length > 0 && (
-                <div style={{ width: '100svw', height: '100svh', margin: 0, padding: 0 }}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', margin: 0 }}>
                     <MoonPayBuyWidget
                         variant="embedded"
                         baseCurrencyCode="usd"
                         baseCurrencyAmount="100"
                         defaultCurrencyCode="eth"
-                        // showOnlyCurrencies={wallets}
-                        visible
-                        style={{ width: '100%', height: '100%', margin: 0, padding: 0 }}
+                        showOnlyCurrencies={wallets}
+
                     />
-                </div>)}
+                </div>
+            )}
+
+
         </MoonPayProvider>
     )
 }
