@@ -26,7 +26,9 @@ export default function App() {
                         baseCurrencyCode="usd"
                         baseCurrencyAmount="100"
                         defaultCurrencyCode="eth"
-                        showOnlyCurrencies={wallets}
+                        theme='dark'
+                    // showOnlyCurrencies={wallets}
+
 
                     />
                 </div>
