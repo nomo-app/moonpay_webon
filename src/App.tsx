@@ -8,12 +8,11 @@ export default function App() {
     nomo.getWalletAddresses().then((addresses) => {
         setWallets(Object.entries(addresses.walletAddresses).map(([key, value]) => {
             return wallets.length > 0 ? key : `${wallets},${key}`;
-        }).join("\n"))
+        }).join())
     });
 
 
     console.log("wallets", wallets);
-
     const apiKey = import.meta.env.VITE_API_KEY;
     return (
         <MoonPayProvider
@@ -27,9 +26,7 @@ export default function App() {
                         baseCurrencyAmount="100"
                         defaultCurrencyCode="eth"
                         theme='dark'
-                    // showOnlyCurrencies={wallets}
-
-
+                        showOnlyCurrencies={wallets}
                     />
                 </div>
             )}
