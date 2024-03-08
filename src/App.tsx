@@ -44,7 +44,7 @@ export default function App() {
                         baseCurrencyAmount="100"
                         defaultCurrencyCode="eth"
                         theme='dark'
-                        walletAddress={wallets}
+                        walletAddresses={wallets}
                         showOnlyCurrencies={currencies}
 
                     />
