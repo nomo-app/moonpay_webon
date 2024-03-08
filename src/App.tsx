@@ -30,10 +30,8 @@ export default function App() {
 
 
     console.log("currencies", currencies);
-    console.log("wallets", wallets);
-    const test = `{"eth":"0x86e6aa9a2e45241e8ded485a92710ccb9ab55c3f"}`;
 
-    const apiKey = import.meta.env.VITE_API_KEY;
+    const apiKey = import.meta.env.VITE_API_KEY_TEST;
     return (
         <MoonPayProvider
             apiKey={apiKey}
@@ -46,7 +44,7 @@ export default function App() {
                         baseCurrencyAmount="100"
                         defaultCurrencyCode="eth"
                         theme='dark'
-                        walletAddress={test}
+                        walletAddress={wallets}
                         showOnlyCurrencies={currencies}
 
                     />
