@@ -1,30 +1,23 @@
-# React + TypeScript + Vite
+# MoonPay WebOn
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple web app that uses the MoonPay API to allow users to buy crypto with a credit card.
 
-Currently, two official plugins are available:
+## Getting Started
+To get started, you will need to create a `.env` file in the root of the project with the following contents:
+- `MOONPAY_API_KEY_TEST`: Your MoonPay API key for the test environment
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Deploy
+
+To deploy the app, you will need to create a `.env` file in the root of the project with the following contents:
+- `MOONPAY_API_KEY_LIVE`: Your MoonPay API key for the live environment
+
+```bash
+npm run build
+npm run deploy
+```
+
