@@ -1,24 +1,44 @@
 import './App.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nomo } from "nomo-webon-kit";
 import { MoonPayBuyWidget, MoonPayProvider } from '@moonpay/moonpay-react';
 
 export default function App() {
+    const [currencies, setCurrencies] = useState<string>("");
     const [wallets, setWallets] = useState<string>("");
-    nomo.getWalletAddresses().then((addresses) => {
-        setWallets(Object.entries(addresses.walletAddresses).map(([key]) => {
-            return wallets.length > 0 ? key : `${wallets},${key}`;
-        }).join())
-    });
 
 
+    useEffect(() => {
+        nomo.getWalletAddresses().then((addresses) => {
+            const walletsData = addresses.walletAddresses;
+            const processedWallets: Record<string, string> = {};
+            const currencyList = [];
+
+            for (const [key, value] of Object.entries(walletsData)) {
+                // Convert key to lowercase
+                const lowerKey = key.toLowerCase();
+                processedWallets[lowerKey] = value;
+                // Add the lowercase key to the currency list
+                currencyList.push(lowerKey);
+            }
+            const walletsJsonString = JSON.stringify(processedWallets);
+            // Save the processed wallets as JSON
+            setWallets(walletsJsonString);
+            setCurrencies(currencyList.join(','));
+        });
+    }, []);
+
+
+    console.log("currencies", currencies);
     console.log("wallets", wallets);
+    const test = `{"eth":"0x86e6aa9a2e45241e8ded485a92710ccb9ab55c3f"}`;
+
     const apiKey = import.meta.env.VITE_API_KEY;
     return (
         <MoonPayProvider
             apiKey={apiKey}
         >
-            {wallets.length > 0 && (
+            {currencies.length > 0 && (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', margin: 0 }}>
                     <MoonPayBuyWidget
                         variant="embedded"
@@ -26,7 +46,9 @@ export default function App() {
                         baseCurrencyAmount="100"
                         defaultCurrencyCode="eth"
                         theme='dark'
-                        showOnlyCurrencies={wallets}
+                        walletAddress={test}
+                        showOnlyCurrencies={currencies}
+
                     />
                 </div>
             )}
