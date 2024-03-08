@@ -31,3 +31,5 @@ Thumbs.db
 # Vite specific
 .vite/
 .vitepress/
+
+nomo.tar.gz
