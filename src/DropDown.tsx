@@ -32,6 +32,10 @@ function DropDownButton() {
                 }));
 
             setAddressItems(items);
+
+            if (items.length > 0) {
+                setSelectedValue(items[0].value);
+            }
         });
     }, []);
 
