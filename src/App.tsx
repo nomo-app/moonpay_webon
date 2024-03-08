@@ -31,7 +31,7 @@ export default function App() {
 
     console.log("currencies", currencies);
 
-    const apiKey = import.meta.env.VITE_API_KEY_TEST;
+    const apiKey = import.meta.env.VITE_API_KEY_LIVE;
     return (
         <MoonPayProvider
             apiKey={apiKey}
