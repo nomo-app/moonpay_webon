@@ -6,7 +6,7 @@ import { MoonPayBuyWidget, MoonPayProvider } from '@moonpay/moonpay-react';
 export default function App() {
     const [wallets, setWallets] = useState<string>("");
     nomo.getWalletAddresses().then((addresses) => {
-        setWallets(Object.entries(addresses.walletAddresses).map(([key, value]) => {
+        setWallets(Object.entries(addresses.walletAddresses).map(([key]) => {
             return wallets.length > 0 ? key : `${wallets},${key}`;
         }).join())
     });
@@ -30,8 +30,6 @@ export default function App() {
                     />
                 </div>
             )}
-
-
         </MoonPayProvider>
     )
 }
