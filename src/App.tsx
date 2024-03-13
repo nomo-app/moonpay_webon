@@ -12,11 +12,15 @@ export default function App() {
         nomo.getWalletAddresses().then((addresses) => {
             const walletsData = addresses.walletAddresses;
             const processedWallets: Record<string, string> = {};
-            const currencyList = [];
+            const currencyList = ["matic", "dai"];
 
             for (const [key, value] of Object.entries(walletsData)) {
                 // Convert key to lowercase
                 const lowerKey = key.toLowerCase();
+
+                if (lowerKey === "btc" || lowerKey === "ltc" || lowerKey === "bch") {
+                    continue;
+                }
                 processedWallets[lowerKey] = value;
                 // Add the lowercase key to the currency list
                 currencyList.push(lowerKey);
@@ -30,6 +34,8 @@ export default function App() {
 
 
     console.log("currencies", currencies);
+    console.log("wallets", wallets);
+
 
     const apiKey = import.meta.env.VITE_API_KEY_LIVE;
     return (
@@ -46,7 +52,6 @@ export default function App() {
                         theme='dark'
                         walletAddresses={wallets}
                         showOnlyCurrencies={currencies}
-
                     />
                 </div>
             )}
