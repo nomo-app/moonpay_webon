@@ -3,9 +3,9 @@ const nomoCliConfig = {
         production: {
             rawSSH: {
                 sshHost: process.env.SSH_TARGET,
-                sshBaseDir: "/var/www/production_webons/moonpay/",
-                publicBaseUrl: "https://w.nomo.app/moonpay",
-                hybrid: true,
+                sshBaseDir: "/var/www/moonpay/",
+                publicBaseUrl: "https://moonpay.nomo.zone",
+                targz: false,
             },
         },
     },
