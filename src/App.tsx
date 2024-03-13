@@ -1,6 +1,6 @@
 import './App.css'
 import { useEffect, useState } from "react";
-import { nomo } from "nomo-webon-kit";
+import { nomo, nomoFallbackQRCode } from "nomo-webon-kit";
 import { MoonPayBuyWidget, MoonPayProvider } from '@moonpay/moonpay-react';
 
 export default function App() {
@@ -9,6 +9,8 @@ export default function App() {
 
 
     useEffect(() => {
+
+        nomoFallbackQRCode();
         nomo.getWalletAddresses().then((addresses) => {
             const walletsData = addresses.walletAddresses;
             const processedWallets: Record<string, string> = {};
