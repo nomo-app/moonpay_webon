@@ -33,3 +33,4 @@ Thumbs.db
 .vitepress/
 
 nomo.tar.gz
+clear_cloudflare_cache.js
