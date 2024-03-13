@@ -18,9 +18,16 @@ export default function App() {
                 // Convert key to lowercase
                 const lowerKey = key.toLowerCase();
 
-                if (lowerKey === "btc" || lowerKey === "ltc" || lowerKey === "bch") {
+                if (lowerKey === "ltc" || lowerKey === "btc") {
                     continue;
                 }
+                if (lowerKey === "bch") {
+                    const newvalue = value.replace("bitcoincash:", "");
+                    processedWallets[lowerKey] = newvalue;
+                    currencyList.push(lowerKey);
+                    continue;
+                }
+
                 processedWallets[lowerKey] = value;
                 // Add the lowercase key to the currency list
                 currencyList.push(lowerKey);
