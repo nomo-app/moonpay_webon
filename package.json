@@ -2,7 +2,6 @@
   "name": "moonpay_webon",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite --host",
     "build": "nomo-webon-cli bumpVersion public/nomo_manifest.json && tsc && vite build &&  rm -rf out && mv dist out && nomo-webon-cli build out",
@@ -11,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@moonpay/moonpay-js": "^0.4.1",
     "@moonpay/moonpay-react": "^1.5.2",
     "nomo-webon-kit": "^0.1.23",
     "react": "^18.2.0",

@@ -9,7 +9,6 @@ export default function App() {
 
 
     useEffect(() => {
-
         nomoFallbackQRCode();
         nomo.getWalletAddresses().then((addresses) => {
             const walletsData = addresses.walletAddresses;
@@ -41,12 +40,19 @@ export default function App() {
         });
     }, []);
 
+    const backendurl = import.meta.env.VITE_BACKENDURL
+
+    const handleGetSignature = async (url: string): Promise<string> => {
+        const response = await fetch(`${backendurl}?url=${url}`);
+        const signature = await response.text();
+        return signature;
+    }
 
     console.log("currencies", currencies);
     console.log("wallets", wallets);
 
 
-    const apiKey = import.meta.env.VITE_API_KEY_LIVE;
+    const apiKey = import.meta.env.VITE_API_KEY_TEST;
     return (
         <MoonPayProvider
             apiKey={apiKey}
@@ -59,6 +65,7 @@ export default function App() {
                         baseCurrencyAmount="100"
                         defaultCurrencyCode="eth"
                         theme='dark'
+                        onUrlSignatureRequested={handleGetSignature}
                         walletAddresses={wallets}
                         showOnlyCurrencies={currencies}
                     />
