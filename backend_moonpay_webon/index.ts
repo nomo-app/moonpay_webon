@@ -1,12 +1,16 @@
 import { MoonPay } from '@moonpay/moonpay-node';
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
+
 
 dotenv.config();
 
 const apikey = process.env.SK_LIVE || "test";
 const moonPay = new MoonPay(apikey);
 const app = express();
+
+app.use(cors());
 
 app.get('/moonpay_signature', (req, res) => {
     const { url } = req.query;
