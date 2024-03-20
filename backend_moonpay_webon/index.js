@@ -15,6 +15,11 @@ app.get('/moonpay_signature', (req, res) => {
         return;
     }
     const signature = moonPay.url.generateSignature(url);
+    console.log("url", url);
+    console.log("signature", signature);
+    const checkURL = url + "&signature=" + signature;
+    const isSignatureValid = moonPay.url.isSignatureValid(checkURL);
+    console.log("isSignatureValid", isSignatureValid);
     res.send({ signature });
 });
 const port = process.env.PORT || 3000;

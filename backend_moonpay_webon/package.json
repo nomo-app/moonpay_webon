@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "tsc && node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "tsc && rsync -r . root@95.179.247.2:/var/www/moonpay_backend --delete"
   },
   "author": "",
   "license": "ISC",

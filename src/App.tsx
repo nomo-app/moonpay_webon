@@ -19,12 +19,15 @@ export default function App() {
                 // Convert key to lowercase
                 const lowerKey = key.toLowerCase();
 
-                if (lowerKey === "ltc" || lowerKey === "btc") {
+                if (lowerKey === "ltc" || lowerKey === "btc" || lowerKey === "zeniq" || lowerKey === "euro") {
                     continue;
                 }
                 if (lowerKey === "bch") {
-                    const newvalue = value.replace("bitcoincash:", "");
-                    processedWallets[lowerKey] = newvalue;
+                    if (value && value.startsWith("bitcoincash:")) {
+                        processedWallets[lowerKey] = value.replace("bitcoincash:", "");
+                    } else if (value) {
+                        processedWallets[lowerKey] = value;
+                    }
                     currencyList.push(lowerKey);
                     continue;
                 }
@@ -43,16 +46,18 @@ export default function App() {
     const backendurl = import.meta.env.VITE_BACKENDURL
 
     const handleGetSignature = async (url: string): Promise<string> => {
-        const response = await fetch(`${backendurl}?url=${url}`);
-        const signature = await response.text();
-        return signature;
+        const response = await fetch(`${backendurl}?url=${encodeURIComponent(url)}`);
+        console.log("response from backedn", response);
+        const data = await response.json();
+        return data.signature;
     }
 
     console.log("currencies", currencies);
     console.log("wallets", wallets);
 
 
-    const apiKey = import.meta.env.VITE_API_KEY_TEST;
+    const apiKey = import.meta.env.VITE_API_KEY_LIVE;
+
     return (
         <MoonPayProvider
             apiKey={apiKey}
