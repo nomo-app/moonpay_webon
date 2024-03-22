@@ -1,0 +1,22 @@
+#moonpay-react-sdk-embedded-frame {
+    width: 100vh !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    border-width: 0 !important;
+
+}
+
+body {
+    margin: 0 !important
+}
+
+.banner-root {
+    width: 100vh !important;
+}
+
+iframe {
+    border: none !important;
+    position: fixed !important;
+}
